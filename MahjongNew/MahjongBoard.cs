@@ -18,6 +18,7 @@ namespace MahjongNew
             TestMode = InTestMode;
             this.WindowHandle = WindowHandle;
 
+            /*
             for (int x = 0; x < 7; x++)
             {
                 for (int y = 0; y < 7; y++)
@@ -55,17 +56,38 @@ namespace MahjongNew
                     WindowHandle.Controls.Add(Tile.TileCanvas);
                     WindowHandle.Controls.SetChildIndex(Tile.TileCanvas, 0);
                 }
-            }
+            }*/
 
             LoadBoardFromFile("",false);
         }
 
         public void LoadBoardFromFile(string Filename, bool Center)
         {
-            string[] Lines = File.ReadAllLines(Directory.GetCurrentDirectory());
-            foreach(string Line in Lines)
+            string Board = Properties.Resources.TurtleBoard;
+            string[] lines = Board.Split(
+                new[] { Environment.NewLine },
+                StringSplitOptions.None
+            );
+
+            for(int y = 0; y < lines.Length; y++)
             {
-                Console.WriteLine(Line);
+                char[] CharArray = lines[y].ToCharArray();
+                for(int x = 0; x < CharArray.Length; x++)
+                {
+                    char Char = CharArray[x];
+                    if (Char != '0')
+                    {
+                        int ZIndex = int.Parse(Char.ToString());
+                        Point Coordinate = new Point(x, y);
+
+                        MahjongTile Tile = new MahjongTile(0);
+                        TileStore[x, y, ZIndex] = Tile;
+                        Tile.TileCanvas.Location = new Point(x * 43 - (ZIndex * 5), y * 61 - (ZIndex * 5));
+                        Tile.OnTileClicked += OnTileClicked;
+                        WindowHandle.Controls.Add(Tile.TileCanvas);
+                        WindowHandle.Controls.SetChildIndex(Tile.TileCanvas, 0);
+                    }
+                }
             }
         }
 
@@ -83,7 +105,7 @@ namespace MahjongNew
         }
 
         // === Private Members ===
-        MahjongTile[,,] TileStore = new MahjongTile[32, 32, 3];
+        MahjongTile[,,] TileStore = new MahjongTile[32, 32, 6];
         List<MahjongTile> SelectedTiles = new List<MahjongTile>(2);
         MainWindow WindowHandle;
         bool TestMode;
