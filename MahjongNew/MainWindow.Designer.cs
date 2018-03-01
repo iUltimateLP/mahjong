@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.restartButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // restartButton
+            // 
+            this.restartButton.ForeColor = System.Drawing.Color.Black;
+            this.restartButton.Location = new System.Drawing.Point(13, 13);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(101, 33);
+            this.restartButton.TabIndex = 0;
+            this.restartButton.Text = "Neustart";
+            this.restartButton.UseVisualStyleBackColor = true;
+            this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
             // 
             // MainWindow
             // 
@@ -36,12 +48,13 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.BackgroundImage = global::MahjongNew.Properties.Resources.MahjongBackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 611);
+            this.Controls.Add(this.restartButton);
             this.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Mahjong";
             this.ResumeLayout(false);
@@ -49,6 +62,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button restartButton;
     }
 }
 

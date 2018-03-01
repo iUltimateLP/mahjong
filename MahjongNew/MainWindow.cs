@@ -18,7 +18,12 @@ namespace MahjongNew
         {
             InitializeComponent();
 
-            Board = new MahjongBoard(this, true);
+            Board = new MahjongBoard(this);
+        }
+
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            Board = new MahjongBoard(this);
         }
     }
 }

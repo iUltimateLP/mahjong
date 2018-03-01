@@ -124,9 +124,6 @@
   <data name="MahjongTileset" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tiles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Square" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Boards\Square.board;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="TurtleBoard" xml:space="preserve">
     <value>011111111111100
 001122222210000

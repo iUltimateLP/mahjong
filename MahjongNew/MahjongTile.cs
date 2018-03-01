@@ -55,7 +55,7 @@ namespace MahjongNew
 
         private void TileCanvas_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawString(GetTileIndex().ToString(), new Font("Arial", 13), new SolidBrush(Color.Black), 0,0 );
+            //e.Graphics.DrawString(GetTileIndex().ToString(), new Font("Arial", 13), new SolidBrush(Color.Black), 0,0 );
 
             if (IsHovered && !IsClicked)
                 e.Graphics.DrawRectangle(new Pen(Color.Black, 5), 0, 0, TileSize.X, TileSize.Y);
@@ -75,6 +75,7 @@ namespace MahjongNew
 
         // === Private Members ===
         private int TileIndex = 0;
+        public Vector TileVector;
         private Point TileSize = new Point(48, 66);
         private Image TileTexture;
         public PictureBox TileCanvas;
