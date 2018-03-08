@@ -82,7 +82,7 @@ namespace MahjongNew.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die 011111111111100
-        ///001122222210000
+        ///000122222210000
         ///001123333211000
         ///011123443211100
         ///011123443211100

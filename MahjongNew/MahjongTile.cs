@@ -22,7 +22,6 @@ namespace MahjongNew
             TempTileTexture.RotateFlip(RotateFlipType.Rotate180FlipY);
 
             TileTexture = TempTileTexture;
-            Console.WriteLine("Generated texture for tile " + TileIndex.ToString());
 
             TileCanvas = new PictureBox();
             TileCanvas.Name = "MahjongTile_" + InTileIndex;
@@ -58,9 +57,13 @@ namespace MahjongNew
             //e.Graphics.DrawString(GetTileIndex().ToString(), new Font("Arial", 13), new SolidBrush(Color.Black), 0,0 );
 
             if (IsHovered && !IsClicked)
-                e.Graphics.DrawRectangle(new Pen(Color.Black, 5), 0, 0, TileSize.X, TileSize.Y);
+            {
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(64, 0, 0, 0)), 0, 0, TileSize.X, TileSize.Y);
+            }
             else if (IsClicked)
-                e.Graphics.DrawRectangle(new Pen(Color.Red, 5), 0, 0, TileSize.X, TileSize.Y);
+            {
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(64, 0, 0, 0)), 0, 0, TileSize.X, TileSize.Y);
+            }
         }
 
         public Image GetTileTexture()

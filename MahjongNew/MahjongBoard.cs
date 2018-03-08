@@ -102,7 +102,7 @@ namespace MahjongNew
 
                 if (FirstTileAccessible && SecondTileAccessible && SameTile)
                 {
-                    Console.WriteLine("jo geil");
+                    Console.WriteLine("Tile able to destroy");
                 }
                 else
                 {
@@ -113,7 +113,6 @@ namespace MahjongNew
                     SelectedTiles[1].IsClicked = false;
                     SelectedTiles[1].TileCanvas.Invalidate();
                     SelectedTiles.Clear();
-                    Console.WriteLine("ne");
                     return;
                 }
 
@@ -124,6 +123,11 @@ namespace MahjongNew
                 TileStore[x2, y2, z2] = null;
 
                 SelectedTiles.Clear();
+
+                if (!CheckForCompletition())
+                {
+                    WindowHandle.PopulateBoard(WindowHandle);
+                }
             }
         }
 
@@ -138,6 +142,57 @@ namespace MahjongNew
             WindowHandle.Controls.SetChildIndex(Tile.TileCanvas, 0);
 
             return Tile;
+        }
+
+        public bool CheckForCompletition()
+        {
+            bool FoundTile = false;
+
+            for (int x = 0; x < 32; x++)
+            {
+                for (int y = 0; y < 32; y++)
+                {
+                    for (int z = 0; z < 6; z++)
+                    {
+                        FoundTile = TileStore[x, y, z] != null;
+
+                        if (FoundTile)
+                            break;
+                    }
+
+                    if (FoundTile)
+                        break;
+                }
+
+                if (FoundTile)
+                    break;
+            }
+
+            return FoundTile;
+        }
+
+        public void ShuffleBoard()
+        {
+            Random TileIndexRandom = new Random();
+
+            for (int x = 0; x < 32; x++)
+            {
+                for (int y = 0; y < 32; y++)
+                {
+                    for (int z = 0; z < 6; z++)
+                    {
+                        if (TileStore[x, y, z] != null)
+                        {
+                            Vector Location = TileStore[x, y, z].TileVector;
+                            WindowHandle.Controls.Remove(TileStore[x, y, z].TileCanvas);
+                            TileStore[x, y, z] = null;
+
+                            int Index = TileIndexRandom.Next(0, 42);
+                            TileStore[x, y, z] = CreateTile(Location.X, Location.Y, Location.Z, Index);
+                        }
+                    }
+                }
+            }
         }
 
         // === Private Members ===

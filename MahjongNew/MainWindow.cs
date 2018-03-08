@@ -18,12 +18,22 @@ namespace MahjongNew
         {
             InitializeComponent();
 
-            Board = new MahjongBoard(this);
+            PopulateBoard(this);
         }
 
         private void restartButton_Click(object sender, EventArgs e)
         {
-            Board = new MahjongBoard(this);
+            PopulateBoard(this);
+        }
+
+        public void PopulateBoard(MainWindow WindowInstance)
+        {
+            Board = new MahjongBoard(WindowInstance);
+        }
+
+        private void shuffleButton_Click(object sender, EventArgs e)
+        {
+            Board.ShuffleBoard();
         }
     }
 }
